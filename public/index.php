@@ -74,7 +74,7 @@ $users = $user->read();
             <tbody>
                 <?php while($row = $users->fetch(PDO::FETCH_ASSOC)): ?>
                 <tr>
-                    <td scope="row"><a href="" class="text-decoration-none text-dark"><?=$row['name'] ?></a></td>
+                    <td scope="row"><a href="show.php?id=<?=$row['id']?>" class="text-decoration-none text-dark"><?=$row['name'] ?></a></td>
                     <td><?=$row['age'] ?></td>
                     <td><?=$row['address'] ?></td>
                     <td>

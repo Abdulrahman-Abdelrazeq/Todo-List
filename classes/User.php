@@ -28,6 +28,11 @@ class User {
         }
     }
 
+    public function readOnly($id) {
+        $sql = "select * from users where id = $id";
+        return $this->conn->query($sql);
+    }
+
     public function update ($id, $name, $age, $address) {
         $name = $this->conn->quote($name);
         $address = $this->conn->quote($address);
