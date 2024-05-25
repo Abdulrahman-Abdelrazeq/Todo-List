@@ -8,7 +8,6 @@ $db = $db->getConnection();
 
 $user = new User($db);
 $users = $user->read();
-
 ?>
 
 <!DOCTYPE html>
@@ -17,11 +16,27 @@ $users = $user->read();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo-List</title>
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- CSS -->
+    <link href="../assets/css/style.css" rel="stylesheet">
+    
 </head>
 <body>
 
     <main class="container pt-5">
+        <div class="messages">
+            <?php
+            session_start();
+            if (isset($_SESSION['message'])):
+                echo "<div class='alert alert-" . ($_SESSION['message_type'] == 'success' ? 'success' : 'danger') . " alert-dismissible fade show' role='alert'>" . $_SESSION['message'] . "
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                </div>";
+                unset($_SESSION['message']);
+                unset($_SESSION['message_type']);
+            endif;
+            ?>
+        </div>
         <div class="create d-flex align-items-center">
 
             <!-- Button trigger modal -->
@@ -145,7 +160,7 @@ $users = $user->read();
             </tbody>
         </table>
     </main>
-
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 </body>

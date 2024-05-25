@@ -13,9 +13,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $name = $_POST['name'];
     $age = $_POST['age'];
     $address = $_POST['address'];
+    session_start();
     if($user->update($id, $name, $age, $address)){
+        $_SESSION['message'] = "User updated successfully";
+        $_SESSION['message_type'] = "success";
         header("location: index.php");
+        exit();
     }else {
-        echo "Update Failed";
+        $_SESSION['message'] = "User updated Failed";
+        $_SESSION['message_type'] = "error";
     }
 }

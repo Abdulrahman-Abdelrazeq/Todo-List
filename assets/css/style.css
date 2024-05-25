@@ -1,0 +1,7 @@
+.messages .success {
+    background-color: rgb(2, 222, 2);
+}
+
+.messages .error {
+    background-color: rgb(252, 47, 47);
+}

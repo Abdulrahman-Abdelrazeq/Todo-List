@@ -10,9 +10,14 @@ $user = new User($db);
 
 if($_SERVER['REQUEST_METHOD'] === "POST"){
     $id = $_GET['id'];
+    session_start();
     if($user->delete($id)){
+        $_SESSION['message'] = "User deleted successfully";
+        $_SESSION['message_type'] = "success";
         header('location: index.php');
+        exit();
     }else {
-        echo "Delete Failed";
+        $_SESSION['message'] = "User deleted Failed";
+        $_SESSION['message_type'] = "error";
     }
 }

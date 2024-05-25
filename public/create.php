@@ -12,10 +12,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $age = $_POST['age'];
     $address = $_POST['address'];
     
+    session_start();
     if ($user->create($name, $age, $address)) {
+        $_SESSION['message'] = "User created successfully";
+        $_SESSION['message_type'] = "success";
         header('location: index.php');
+        exit();
     } else {
-        echo "User could not be created.";
+        $_SESSION['message'] = "User created Failed";
+        $_SESSION['message_type'] = "error";
     }
 }
 ?>
